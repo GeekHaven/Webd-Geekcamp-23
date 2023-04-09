@@ -59,8 +59,8 @@ function createPokeImage(pokeData, containerDiv) {
 //   As the website for pokemon image API is updated, it brings us a lot more data than before.
 //   So, here we are fetching one type of pokemon images contained in .sprites key.
   let pokeImageURL = pokeData.sprites.other.dream_world.front_default; 
-  PokeImage.alt = "Image Not Found";
-  PokeImage.src = pokeImageURL;
+  pokeImage.alt = "Image Not Found";
+  pokeImage.src = pokeImageURL;
   containerDiv.append(pokeImage);
 }
 //Some unrelated gyan:
