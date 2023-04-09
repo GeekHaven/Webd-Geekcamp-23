@@ -39,7 +39,7 @@ function renderPokemon(pokeData) {
   let pokeContainer = document.createElement("div");
 
   //I am passing this the pokeContainer because i want to append the image in that container so
-  createPokeImage(pokeData.id, pokeContainer);
+  createPokeImage(pokeData, pokeContainer);
 
   let pokeName = document.createElement("h4");
   pokeName.innerText = pokeData.name;
@@ -52,23 +52,15 @@ function renderPokemon(pokeData) {
   allPokemonContainer.appendChild(pokeContainer);
 }
 
-function createPokeImage(pokeID, containerDiv) {
+function createPokeImage(pokeData, containerDiv) {
   let pokeImage = document.createElement("img");
   pokeImage.classList.add("pokeImg");
-
-  let formattedPokeId;
-  if (pokeID < 10) {
-    formattedPokeId = "00" + pokeID;
-  } else if (pokeID < 100) {
-    formattedPokeId = "0" + pokeID;
-  } else formattedPokeId = pokeID;
-
-  //If you use this url and put 001 instead of that fomattedPokeId variable,
-  //you would get a image of bulbasaur on browser.
-  // I just saw how the url returned different pokemons based on that number
-  //and formatted my id to match that format
-  //so I can get the final pokemon which I want based on names.
-  pokeImage.srcset = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formattedPokeId}.png`;
+  
+//   As the website for pokemon image API is updated, it brings us a lot more data than before.
+//   So, here we are fetching one type of pokemon images contained in .sprites key.
+  let pokeImageURL = pokeData.sprites.other.dream_world.front_default; 
+  PokeImage.alt = "Image Not Found";
+  PokeImage.src = pokeImageURL;
   containerDiv.append(pokeImage);
 }
 //Some unrelated gyan:
